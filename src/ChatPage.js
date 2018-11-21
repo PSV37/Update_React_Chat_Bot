@@ -32,99 +32,91 @@ class ChatPage extends Component {
     console.log('payload')
     console.log(this.props)
     return (
-        <div className="container text-center">
-      {isShowChatbot ? (
+       <div className="container text-center">
+        {isShowChatbot ? (
         <React.Fragment>
         <div className="row">
-            <hr />
-            MORE
-            <a >
-              Creative User Profile</a>,
-            <a target="_blank" href="http://bootsnipp.com/snippets/GXzyP">Open in chat (popup-box chat-popup)</a>
-            <aside id="sidebar_secondary" className="popup-box-on tabbed_sidebar ng-scope chat_sidebar">
-              <div className="popup-head">
-                <div className="popup-head-left pull-left">
-                  <a title="Gurdeep Osahan (Web Designer)" target="_blank" href="https://web.facebook.com/iamgurdeeposahan">
-                    <img className="md-user-image" alt="PORTIQO REAL ESTATE" title="PORTIQO REAL ESTATE" src="images/botPortiqo.png" />
-                    <h1>PORTIQO </h1><small><br />
-                    <Glyphicon glyph="briefcase"/>
+        <div className="container-fluid h-100">
+        <div className="row justify-content-center h-100">
 
-                    REAL ESTATE</small></a>
-                </div>
-                <div className="popup-head-right pull-right">
-                  <button className="chat-header-button" type="button"><i className="glyphicon glyphicon-facetime-video" /></button>
-                  <button className="chat-header-button" type="button"><i className="glyphicon glyphicon-earphone" /></button>
-                  <div className="btn-group gurdeepoushan">
-                    <button className="chat-header-button" data-toggle="dropdown" type="button" aria-expanded="false">
-                      <i className="glyphicon glyphicon-paperclip" /> </button>
-                    <ul role="menu" className="dropdown-menu pull-right">
-                      <li><a href="#">
-                      <span className="glyphicon glyphicon-picture" aria-hidden="true" /> Gallery</a></li>
-                      <li><a href="#"><span className="glyphicon glyphicon-camera" aria-hidden="true" /> Photo</a></li>
-                      <li><a href="#"><span className="glyphicon glyphicon-facetime-video" aria-hidden="true" /> Video</a></li>
-                      <li><a href="#"><span className="glyphicon glyphicon-headphones" aria-hidden="true" /> Audio</a></li>
-                      <li><a href="#"><span className="glyphicon glyphicon-map-marker" aria-hidden="true" /> Location</a></li>
-                      <li><a href="#"><span className="glyphicon glyphicon-user" aria-hidden="true" /> Contact</a></li>
-                    </ul>
+          <div className="col-md-8 col-xl-6 chat">
+            <div className="card" style={{width:'69%'}}>
+              <div className="card-header msg_head" style={{width :'100%', height:'90px'}}>
+                <div className="d-flex bd-highlight">
+                  <div className="img_cont">
+                    <img src="images/botPortiqo.png" className="rounded-circle user_img" />
+                    <span className="online_icon" /><br />
+                    <span style={{color:'white'}}>Active</span>
                   </div>
-                  <button onClick={this.removeChatbot} data-widget="remove" id="removeClass" className="chat-header-button pull-right" type="button"><i className="glyphicon glyphicon-remove" /></button>
+                  <div className="user_info">
+                    <span>PORTIQO</span>
+                    <p style={{display:'inline-block'}}>real estate bussiness</p>
+                  </div>
+                  <div className="video_cam">
+
+                    <span><i className="glyphicon glyphicon-facetime-video" /></span>
+                    <span className="glyphicon glyphicon-earphone" aria-hidden="true" />
+                    <button onClick={this.removeChatbot} data-widget="remove" id="removeClass" className="chat-header-button remove_icon" type="button"><i className="glyphicon glyphicon-remove-circle" /></button>
+                  </div>
+                </div>
+                <span className="glyphicon glyphicon-option-vertical" aria-hidden="true" />
+                <div className="action_menu">
+                  <ul>
+                    <li><i className="fas fa-user-circle" /> View profile</li>
+                    <li><i className="fas fa-users" /> Add to close friends</li>
+                    <li><i className="fas fa-plus" /> Add to group</li>
+                    <li><i className="fas fa-ban" /> Block</li>
+                  </ul>
                 </div>
               </div>
-              <div id="chat" className="chat_box_wrapper chat_box_small chat_box_active" style={{opacity:   '1', display: 'block', transform: 'translatex(0px)'}}>
-              <div className="chat_box touchscroll chat_box_colors_a">
+              <div className="card-body msg_card_body" style={{width:'100%'}}>
               {
                   feed.map(entry =>
                   {
                       if(entry.sender == 'bot') {
-                      return <div className="chat_message_wrapper">
-                                  <div className="chat_user_avatar">
-                                      <a href="https://web.facebook.com/iamgurdeeposahan" target="_blank">
-                                          <img alt="PORTIQO REAL ESTATE" title="PORTIQO Agent" src="images/bot.jpeg" className="md-user-image" />
-                                      </a>
-                                  </div>
-                                  <ul className="chat_message">
-                                      <li>
-                                        {entry.text}
-                                      </li>
-                                  </ul>
-                              </div>
+                      return  <div className="d-flex justify-content-start mb-4">
+                          <div className="img_cont_msg">
+                            <img src="images/bot.jpeg" className="rounded-circle user_img_msg" />
+                          </div>
+                          <div className="msg_cotainer">
+                              {entry.text}
+                          </div>
+                          <span className="msg_time">9:12 AM, Today</span>
+                      </div>
+
                       } else {
-                      return <div className="chat_message_wrapper chat_message_right">
-                                  <div className="chat_user_avatar">
-                                      <a href="https://web.facebook.com/iamgurdeeposahan" target="_blank">
-                                          <img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="images/user.jpeg" className="md-user-image" />
-                                      </a>
-                                  </div>
-                                  <ul className="chat_message">
-                                      <li>
-                                          {entry.text}
-                                      </li>
-                                  </ul>
-                              </div>
+                      return <div className="d-flex justify-content-end mb-4">
+                        <div className="msg_cotainer_send">
+                        {entry.text}
+                          <span className="msg_time_send" style={{display:'inline'}}>9:05 AM, Today</span>
+                        </div>
+                        <div className="img_cont_msg">
+                          <img src="images/user.jpeg" className="rounded-circle user_img_msg" />
+                        </div>
+                      </div>
                       }
                   }
                   )
               }
+
               </div>
-              </div>
-              <div className="chat_submit_box">
-                <div className="uk-input-group">
-                  <div className="gurdeep-chat-box" style={{display: 'inline-flex'}}>
-                    <span style={{verticalalign:  'sub'}} className="uk-input-group-addon">
-                      <a href="#"><i className="fa fa-smile-o" /></a>
-                    </span>
-                    <input type="text" onKeyDown={(e) => e.keyCode === 13 ? sendMessage(e.target.value) : null } placeholder="Type a message" id="submit_message" name="submit_message" className="md-input form-control" style={{width:'78%',marginTop:'-10px', marginRight:'9px', marginLeft:'4px'}} />
-                    <span style={{verticalalign:  'sub'}} className="uk-input-group-addon">
-                      <a href="#"><i className="fa fa-camera" /></a>
-                    </span>
+              <div className="card-footer">
+                <div className="input-group">
+                  <div className="input-group-append">
+                    <span className="input-group-text attach_btn"><i className="fas fa-paperclip" /></span>
                   </div>
-                  <span className="uk-input-group-addon">
-                    <a href="#"><i className="glyphicon glyphicon-send" /></a>
-                  </span>
+
+                  <input  onKeyDown={(e) => e.keyCode === 13 ? sendMessage(e.target.value) : null } className="form-control type_msg" placeholder="Type your message..." defaultValue={""} />
+                  <div className="input-group-append">
+                    <span className="input-group-text send_btn"><i className="fas fa-location-arrow" /></span>
+                  </div>
                 </div>
               </div>
-            </aside>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
         </React.Fragment>
       ) : (
         <React.Fragment>
@@ -138,8 +130,7 @@ class ChatPage extends Component {
         </React.Fragment>
       )}
 
-      </div>
-
+       </div>
     );
   }
 }
